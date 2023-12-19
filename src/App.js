@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css'; // Make sure to import the CSS
+import './App.css';
 import Header from './components/Header/Header';
 import TodoList from './components/ToDoList/TodoList';
 import { Container, Row, Col } from 'react-bootstrap';
