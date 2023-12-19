@@ -33,7 +33,7 @@ const TodoList = () => {
                     onClick={addTodo}
                     disabled={!input.trim()}
                 >
-                    Add
+                    <i className="bi bi-plus"></i>
                 </Button>
             </Form>
             <ListGroup>
