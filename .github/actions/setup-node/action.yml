@@ -17,4 +17,5 @@ runs:
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
 
     - name: Install dependencies
+      shell: bash
       run: npm ci
