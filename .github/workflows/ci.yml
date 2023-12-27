@@ -55,3 +55,27 @@ jobs:
 
       - name: Run tests
         run: npm test
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [build, test]
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Echo a statement
+        run: echo "***** deploy step"
+
+  #    - name: Set up AWS credentials
+  #      uses: aws-actions/configure-aws-credentials@v1
+  #      with:
+  #        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  #        aws-region: 'your-aws-region' # e.g., us-east-1
+  #
+  #    - name: Deploy to AWS
+  #      run: |
+  #        # Your deployment script or AWS CLI commands
+  #        # Example: aws s3 sync ./build s3://your-s3-bucket-name
