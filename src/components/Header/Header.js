@@ -6,7 +6,7 @@ const Header = () => {
         <header className="todo-header mb-4">
             <h1>
                 <i className="bi bi-list-check me-2"></i>
-                Simple To-Do App
+                Simple To-Do App - AWS CloudFront hosted
             </h1>
         </header>
     );

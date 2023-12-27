@@ -2,5 +2,8 @@
 
 #### Demo hosted on AWS S3 bucket
 
-![React Demo](public/aws-demo.png)
+![App](public/app.png)
 
+#### CloudFront Dashboard
+
+![CloudFront](public/cloudfront.png)
