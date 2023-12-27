@@ -3,6 +3,9 @@ description: 'Installs dependencies'
 runs:
   using: 'composite'
   steps:
+    - name: logging
+      run: echo "XXXX Inside setup node"
+
     - uses: actions/checkout@v2
 
     - name: Use Node.js
