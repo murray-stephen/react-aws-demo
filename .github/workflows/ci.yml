@@ -76,14 +76,14 @@ jobs:
           aws-region: 'eu-west-1'
 
       - name: Echo Partially Masked AWS Credentials
-        run: |
-          echo "AWS Access Key ID: ${aws-access-key-id:0:4}********"
-          echo "AWS Secret Access Key: ${aws-secret-access-key:0:4}********"
-          echo "AWS Region: $AWS_REGION"
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: 'your-aws-region'
+        run: |
+          echo "AWS Access Key ID: ${aws-access-key-id:0:4}********"
+          echo "AWS Secret Access Key: ${aws-secret-access-key:0:4}********"
+          echo "AWS Region: $AWS_REGION"
 
   #    - name: Set up AWS credentials
   #      uses: aws-actions/configure-aws-credentials@v1
