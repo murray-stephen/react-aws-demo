@@ -76,14 +76,17 @@ jobs:
       - name: List S3 Buckets
         run: aws s3 ls
 
+      - name: List contents of the container
+        run: ls -la
+
       - name: Download build artifacts
         uses: actions/download-artifact@v2
         with:
           name: build-artifacts
-          path: ./build
+          path: /build
 
       - name: List build artifacts
-        run: ./build
+        run: /build
 
 #      - name: Sync to S3
 #        run: aws s3 sync local/path/to/build-artifacts s3://test-react-app-public-access
