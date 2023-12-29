@@ -78,3 +78,23 @@ jobs:
       - name: Sync to S3
         run: aws s3 sync ./build s3://test-react-app-public-access
 
+      - name: Get CloudFront Distribution ID
+        id: get_distribution_id
+        run: |
+          DISTRIBUTION_ID=$(aws cloudfront list-distributions \
+            --query "DistributionList.Items[?Aliases.Items[?contains(@, 'd2zaexoz2l1ovi.cloudfront.net/')]].Id | [0]" \
+            --output text)
+          echo "Distribution ID: $DISTRIBUTION_ID"
+          echo "::set-output name=distribution_id::$DISTRIBUTION_ID"
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: 'eu-west-1'
+
+      - name: Invalidate CloudFront Distribution
+        run: |
+          aws cloudfront create-invalidation --distribution-id ${{ steps.get_distribution_id.outputs.distribution_id }} --paths "/*"
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: 'eu-west-1'
