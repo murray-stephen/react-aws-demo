@@ -88,8 +88,8 @@ jobs:
           name: build-artifacts
           path: build
 
-      - name: List build artifacts
-        run: /build
+      - name: List contents of the container
+        run: ls -la
 
 #      - name: Sync to S3
 #        run: aws s3 sync local/path/to/build-artifacts s3://test-react-app-public-access
