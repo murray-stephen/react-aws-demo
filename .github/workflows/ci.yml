@@ -66,6 +66,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Download build artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: build-artifacts
+          path: build
+
+      - name: List contents of the container
+        run: ls -la
+
       - name: Set up AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -76,32 +85,6 @@ jobs:
       - name: List S3 Buckets
         run: aws s3 ls
 
-      - name: Print current working dir
-        run: pwd
+      - name: Sync to S3
+        run: aws s3 sync ./build s3://test-react-app-public-access
 
-      - name: List contents of the container
-        run: ls -la
-
-      - name: Download build artifacts
-        uses: actions/download-artifact@v2
-        with:
-          name: build-artifacts
-          path: build
-
-      - name: List contents of the container
-        run: ls -la
-
-#      - name: Sync to S3
-#        run: aws s3 sync local/path/to/build-artifacts s3://test-react-app-public-access
-
-  #    - name: Set up AWS credentials
-  #      uses: aws-actions/configure-aws-credentials@v1
-  #      with:
-  #        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  #        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  #        aws-region: 'your-aws-region' # e.g., us-east-1
-  #
-  #    - name: Deploy to AWS
-  #      run: |
-  #        # Your deployment script or AWS CLI commands
-  #        # Example: aws s3 sync ./build s3://your-s3-bucket-name
