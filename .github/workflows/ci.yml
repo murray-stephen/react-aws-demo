@@ -76,6 +76,9 @@ jobs:
       - name: List S3 Buckets
         run: aws s3 ls
 
+      - name: Print current working dir
+        run: pwd
+
       - name: List contents of the container
         run: ls -la
 
