@@ -46,7 +46,6 @@ const TodoList = () => {
                     </ListGroup.Item>
                 ))}
             </ListGroup>
-            <h3>Test deploy pipeline 3</h3>
         </>
     );
 };
